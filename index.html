@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박예영 - 포트폴리오</title>
+    <style>
+        /* 전체 배경 및 폰트 설정 */
+        body {
+            background-color: #e5e5e5;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+            margin: 0;
+            padding: 50px 20px;
+            color: #333;
+        }
+
+        /* 파일 캐비닛 전체 컨테이너 */
+        .folder-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* 탭 버튼 영역 */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            padding-left: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 개별 탭 디자인 */
+        .tab-btn {
+            background-color: #d1d1d1;
+            border: 2px solid #222;
+            border-bottom: none;
+            border-radius: 12px 12px 0 0;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 5px rgba(255,255,255,0.5);
+            transform: translateY(2px);
+        }
+
+        /* 탭에 마우스를 올렸을 때 */
+        .tab-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* 현재 선택된 탭 */
+        .tab-btn.active {
+            background-color: #f9f9f9;
+            transform: translateY(2px);
+            padding-bottom: 14px;
+            z-index: 10;
+        }
+
+        /* 내용이 들어가는 메인 폴더 영역 */
+        .content-area {
+            background-color: #f9f9f9;
+            border: 2px solid #222;
+            border-radius: 8px;
+            min-height: 500px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* 각 섹션의 내용 (기본적으로 숨김 + 애니메이션 준비) */
+        .panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px;
+            box-sizing: border-box;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 현재 선택된 내용 (부드럽게 나타남) */
+        .panel.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            z-index: 5;
+        }
+
+        /* 내부 텍스트 스타일링 */
+        h2 { border-bottom: 2px solid #333; padding-bottom: 10px; margin-top: 0; }
+        .item-group { margin-bottom: 30px; }
+        .item-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 5px; }
+        .item-date { font-size: 0.9rem; color: #666; margin-bottom: 10px; }
+        .item-desc { line-height: 1.6; }
+        .tag { display: inline-block; background: #333; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 5px;}
+    </style>
+</head>
+<body>
+
+    <div class="folder-container">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('about')">자기소개</button>
+            <button class="tab-btn" onclick="switchTab('education')">학력/자격</button>
+            <button class="tab-btn" onclick="switchTab('portfolio')">포트폴리오</button>
+            <button class="tab-btn" onclick="switchTab('experience')">경력/활동</button>
+        </div>
+
+        <div class="content-area">
+            
+            <div id="about" class="panel active">
+                <h2>About Me</h2>
+                <div class="item-group">
+                    <p class="item-title">청소년의 건강한 성장을 돕는 크리에이터, 박예영입니다.</p>
+                    <p class="item-desc">
+                        영상 기획 및 편집 기술과 파이썬 코딩 역량을 융합하여, 유익하고 창의적인 콘텐츠를 만들어내는 데 관심이 많습니다. <br><br>
+                        단순한 정보 전달을 넘어, 대상에 대한 깊은 이해를 바탕으로 기술과 미디어를 활용해 실질적인 도움을 줄 수 있는 전문가로 성장하고자 합니다.
+                    </p>
+                </div>
+                <div class="item-group">
+                    <p class="item-title">Contact & Links</p>
+                    <p class="item-desc">
+                        📧 Email: yeyeongb7@gmail.com / gnuoy1219@naver.com<br>
+                        💻 GitHub: github.com/your-username<br>
+                        🎬 YouTube: youtube.com/@your-channel
+                    </p>
+                </div>
+            </div>
+
+            <div id="education" class="panel">
+                <h2>Education & Certifications</h2>
+                <div class="item-group">
+                    <div class="item-title">OO대학교 OOO학과</div>
+                    <div class="item-date">20XX.03 ~ 20XX.02 (졸업)</div>
+                    <div class="item-desc">관련 전공 학사 학위 취득. 청소년 심리 및 프로그램 기획 관련 프로젝트 다수 진행.</div>
+                </div>
+                <div class="item-group">
+                    <div class="item-title">청소년지도사 2급 (준비 중)</div>
+                    <div class="item-date">진행 중</div>
+                    <div class="item-desc">관련 법령 및 현장 실무에 적용할 수 있는 프로그램 기획 역량 강화 중.</div>
+                </div>
+            </div>
+
+            <div id="portfolio" class="panel">
+                <h2>Projects & Portfolio</h2>
+                
+                <div class="item-group">
+                    <div class="item-title">Youth Canvas 웹 어플리케이션 개발</div>
+                    <div class="item-date">2026.02 ~ 2026.03</div>
+                    <div class="item-desc">
+                        <span class="tag">Python</span> <span class="tag">Streamlit</span> <span class="tag">Firebase</span><br>
+                        데이터베이스를 연동하여 청소년 관련 데이터를 관리하고 시각화하는 대시보드 형태의 웹앱 기획 및 개발. UI 설계 및 코드 트러블슈팅 완료.
+                    </div>
+                </div>
+
+                <div class="item-group">
+                    <div class="item-title">장애 청소년 인식 개선 단편 영화 프로젝트</div>
+                    <div class="item-date">2026.03</div>
+                    <div class="item-desc">
+                        <span class="tag">Premiere Pro</span> <span class="tag">기획</span><br>
+                        휠체어를 타는 청소년과 비장애 청소년의 우정을 다룬 단편 영화 기획. 캐릭터 시트 작성 및 대본에 기반한 영상 컷 편집 진행.
+                    </div>
+                </div>
+
+                <div class="item-group">
+                    <div class="item-title">AI 활용 모의 뉴스 인터뷰 영상 제작</div>
+                    <div class="item-date">2026.03</div>
+                    <div class="item-desc">
+                        <span class="tag">AI Tool</span> <span class="tag">영상 편집</span><br>
+                        발달장애 관련 정보를 전달하는 뉴스 포맷의 영상 프로젝트. 대본 작성 후 AI 앵커 비디오를 생성하여 정보 전달력을 높임.
+                    </div>
+                </div>
+            </div>
+
+            <div id="experience" class="panel">
+                <h2>Experience & Activities</h2>
+                <div class="item-group">
+                    <div class="item-title">야외 독서 토론 영상 콘텐츠 기획</div>
+                    <div class="item-date">2026.02</div>
+                    <div class="item-desc">
+                        공원 및 한강을 배경으로 지도자와 청소년들이 함께 책을 읽고 토론하는 씬 브레이크다운(Scene Breakdown) 작성 및 클립 제작 참여.
+                    </div>
+                </div>
+                <div class="item-group">
+                    <div class="item-title">OOO 청소년 수련관 실무 실습 (예시)</div>
+                    <div class="item-date">2025.07 ~ 2025.08</div>
+                    <div class="item-desc">
+                        청소년 활동 프로그램 보조 지도 및 참여자 피드백 수집, 결과 보고서 작성.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            // 모든 탭 버튼에서 active 클래스 제거
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // 클릭한 탭 버튼에만 active 클래스 추가
+            event.currentTarget.classList.add('active');
+
+            // 모든 패널에서 active 클래스 제거 (숨김 처리)
+            const panels = document.querySelectorAll('.panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+
+            // 클릭한 탭에 해당하는 패널에만 active 클래스 추가 (나타남 처리)
+            const activePanel = document.getElementById(tabId);
+            activePanel.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
